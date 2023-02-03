@@ -61,6 +61,8 @@ var createSongRow = function (songNumber, songName, songLength) {
 };
 
 var setCurrentAlbum = function(album) {
+  currentAlbum = album;
+
   var $albumTitle = $('.album-view-title');
   var $albumArtist = $('.album-view-artist');
   var $albumReleaseInfo = $('.album-view-release-info');
@@ -81,8 +83,13 @@ var setCurrentAlbum = function(album) {
 };
 
 var setSong = function (songNumber) {
-  let songURL = albums[0].songs[songNumber - 1].audioUrl;
+if (currentSoundFile) {
+  currentSoundFile.stop();
+}
+
+  let songURL = currentAlbum.songs[songNumber - 1].audioUrl;
   console.log(songURL);
+
   currentSoundFile = new buzz.sound(songURL, {
     formats: [ 'mp3' ],
     preload: true,
