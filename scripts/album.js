@@ -81,7 +81,7 @@ var setCurrentAlbum = function(album) {
 };
 
 var setSong = function (songNumber) {
-  let songURL = albums[0].songs[songNumber].audioUrl;
+  let songURL = albums[0].songs[songNumber - 1].audioUrl;
   console.log(songURL);
   currentSoundFile = new buzz.sound(songURL, {
     formats: [ 'mp3' ],
